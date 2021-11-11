@@ -14,7 +14,7 @@ import static com.codeborne.selenide.Selenide.open;
 public class AppCardDeliveryTest {
 
     @Test
-    void shouldTestAllValidInfo() throws InterruptedException {
+    void shouldTestAllValidInfo() {
         open("http://localhost:9999");
         $("[data-test-id='city'] [class='input__control']").setValue("Казань");
         LocalDate date = LocalDate.now();
