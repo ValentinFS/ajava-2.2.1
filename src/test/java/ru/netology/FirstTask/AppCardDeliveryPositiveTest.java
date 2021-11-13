@@ -1,4 +1,4 @@
-package ru.netology;
+package ru.netology.FirstTask;
 
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeEach;
