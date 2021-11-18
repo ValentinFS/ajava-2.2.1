@@ -1,4 +1,4 @@
-package ru.netology.FirstTask;
+package ru.netology.firstTask;
 
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeEach;
@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.visible;
@@ -16,6 +17,12 @@ public class AppCardDeliveryNegativeTest {
     @BeforeEach
     void setUp() {
         Configuration.headless = true;
+    }
+
+
+    public String setDays(int days) {
+        String date = LocalDate.now().plusDays(days).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+        return date;
     }
 
 
@@ -32,12 +39,9 @@ public class AppCardDeliveryNegativeTest {
     @Test
     void shouldTestFieldCityEmpty() {
         open("http://localhost:9999");
-        LocalDate date = LocalDate.now();
-        int year = date.getYear();
-        int month = date.getMonthValue();
-        int dayOfMonth = date.getDayOfMonth() + 4;
         $("[data-test-id='date'] [class='input__control']").doubleClick().sendKeys(Keys.DELETE);
-        $("[data-test-id='date'] [class='input__control']").setValue(dayOfMonth + "." + month + "." + year);
+        String days = setDays(3);
+        $("[data-test-id='date'] [class='input__control']").setValue(days);
         $("[data-test-id='name'] [class='input__control']").setValue("Мамин-Сибиряк Дмитрий");
         $("[data-test-id='phone'] [class='input__control']").setValue("+71231234567");
         $(".checkbox__box").click();
@@ -63,12 +67,9 @@ public class AppCardDeliveryNegativeTest {
     void shouldTestFieldNameEmpty() {
         open("http://localhost:9999");
         $("[data-test-id='city'] [class='input__control']").setValue("Казань");
-        LocalDate date = LocalDate.now();
-        int year = date.getYear();
-        int month = date.getMonthValue();
-        int dayOfMonth = date.getDayOfMonth() + 4;
         $("[data-test-id='date'] [class='input__control']").doubleClick().sendKeys(Keys.DELETE);
-        $("[data-test-id='date'] [class='input__control']").setValue(dayOfMonth + "." + month + "." + year);
+        String days = setDays(3);
+        $("[data-test-id='date'] [class='input__control']").setValue(days);
         $("[data-test-id='phone'] [class='input__control']").setValue("+71231234567");
         $(".checkbox__box").click();
         $$("button").find(exactText("Забронировать")).click();
@@ -80,12 +81,9 @@ public class AppCardDeliveryNegativeTest {
     void shouldTestFieldPhoneEmpty() {
         open("http://localhost:9999");
         $("[data-test-id='city'] [class='input__control']").setValue("Казань");
-        LocalDate date = LocalDate.now();
-        int year = date.getYear();
-        int month = date.getMonthValue();
-        int dayOfMonth = date.getDayOfMonth() + 4;
         $("[data-test-id='date'] [class='input__control']").doubleClick().sendKeys(Keys.DELETE);
-        $("[data-test-id='date'] [class='input__control']").setValue(dayOfMonth + "." + month + "." + year);
+        String days = setDays(3);
+        $("[data-test-id='date'] [class='input__control']").setValue(days);
         $("[data-test-id='name'] [class='input__control']").setValue("Мамин-Сибиряк Дмитрий");
         $(".checkbox__box").click();
         $$("button").find(exactText("Забронировать")).click();
@@ -97,12 +95,9 @@ public class AppCardDeliveryNegativeTest {
     void shouldTestCheckBoxEmpty() {
         open("http://localhost:9999");
         $("[data-test-id='city'] [class='input__control']").setValue("Казань");
-        LocalDate date = LocalDate.now();
-        int year = date.getYear();
-        int month = date.getMonthValue();
-        int dayOfMonth = date.getDayOfMonth() + 3;
         $("[data-test-id='date'] [class='input__control']").doubleClick().sendKeys(Keys.DELETE);
-        $("[data-test-id='date'] [class='input__control']").setValue(dayOfMonth + "." + month + "." + year);
+        String days = setDays(3);
+        $("[data-test-id='date'] [class='input__control']").setValue(days);
         $("[data-test-id='name'] [class='input__control']").setValue("Мамин-Сибиряк Дмитрий");
         $("[data-test-id='phone'] [class='input__control']").setValue("+71231234567");
         $$("button").find(exactText("Забронировать")).click();
@@ -114,12 +109,9 @@ public class AppCardDeliveryNegativeTest {
     void shouldTestNotValidCity() {
         open("http://localhost:9999");
         $("[data-test-id='city'] [class='input__control']").setValue("Каза");
-        LocalDate date = LocalDate.now();
-        int year = date.getYear();
-        int month = date.getMonthValue();
-        int dayOfMonth = date.getDayOfMonth() + 3;
         $("[data-test-id='date'] [class='input__control']").doubleClick().sendKeys(Keys.DELETE);
-        $("[data-test-id='date'] [class='input__control']").setValue(dayOfMonth + "." + month + "." + year);
+        String days = setDays(3);
+        $("[data-test-id='date'] [class='input__control']").setValue(days);
         $("[data-test-id='name'] [class='input__control']").setValue("Мамин-Сибиряк Дмитрий");
         $("[data-test-id='phone'] [class='input__control']").setValue("+71231234567");
         $(".checkbox__box").click();
@@ -133,12 +125,9 @@ public class AppCardDeliveryNegativeTest {
     void shouldTestNotValidCityEng() {
         open("http://localhost:9999");
         $("[data-test-id='city'] [class='input__control']").setValue("Kazan");
-        LocalDate date = LocalDate.now();
-        int year = date.getYear();
-        int month = date.getMonthValue();
-        int dayOfMonth = date.getDayOfMonth() + 3;
         $("[data-test-id='date'] [class='input__control']").doubleClick().sendKeys(Keys.DELETE);
-        $("[data-test-id='date'] [class='input__control']").setValue(dayOfMonth + "." + month + "." + year);
+        String days = setDays(3);
+        $("[data-test-id='date'] [class='input__control']").setValue(days);
         $("[data-test-id='name'] [class='input__control']").setValue("Мамин-Сибиряк Дмитрий");
         $("[data-test-id='phone'] [class='input__control']").setValue("+71231234567");
         $(".checkbox__box").click();
@@ -151,12 +140,9 @@ public class AppCardDeliveryNegativeTest {
     void shouldTestNotValidCitySpecialSymbol() {
         open("http://localhost:9999");
         $("[data-test-id='city'] [class='input__control']").setValue("Казань%");
-        LocalDate date = LocalDate.now();
-        int year = date.getYear();
-        int month = date.getMonthValue();
-        int dayOfMonth = date.getDayOfMonth() + 3;
         $("[data-test-id='date'] [class='input__control']").doubleClick().sendKeys(Keys.DELETE);
-        $("[data-test-id='date'] [class='input__control']").setValue(dayOfMonth + "." + month + "." + year);
+        String days = setDays(3);
+        $("[data-test-id='date'] [class='input__control']").setValue(days);
         $("[data-test-id='name'] [class='input__control']").setValue("Мамин-Сибиряк Дмитрий");
         $("[data-test-id='phone'] [class='input__control']").setValue("+71231234567");
         $(".checkbox__box").click();
@@ -170,12 +156,9 @@ public class AppCardDeliveryNegativeTest {
     void shouldTestNotValidDate() {
         open("http://localhost:9999");
         $("[data-test-id='city'] [class='input__control']").setValue("Казань");
-        LocalDate date = LocalDate.now();
-        int year = date.getYear();
-        int month = date.getMonthValue();
-        int dayOfMonth = date.getDayOfMonth() + 2;
         $("[data-test-id='date'] [class='input__control']").doubleClick().sendKeys(Keys.DELETE);
-        $("[data-test-id='date'] [class='input__control']").setValue(dayOfMonth + "." + month + "." + year);
+        String days = setDays(2);
+        $("[data-test-id='date'] [class='input__control']").setValue(days);
         $("[data-test-id='name'] [class='input__control']").setValue("Мамин-Сибиряк Дмитрий");
         $("[data-test-id='phone'] [class='input__control']").setValue("+71231234567");
         $(".checkbox__box").click();
@@ -188,12 +171,9 @@ public class AppCardDeliveryNegativeTest {
     void shouldTestNotValidNameEng() {
         open("http://localhost:9999");
         $("[data-test-id='city'] [class='input__control']").setValue("Казань");
-        LocalDate date = LocalDate.now();
-        int year = date.getYear();
-        int month = date.getMonthValue();
-        int dayOfMonth = date.getDayOfMonth() + 3;
         $("[data-test-id='date'] [class='input__control']").doubleClick().sendKeys(Keys.DELETE);
-        $("[data-test-id='date'] [class='input__control']").setValue(dayOfMonth + "." + month + "." + year);
+        String days = setDays(3);
+        $("[data-test-id='date'] [class='input__control']").setValue(days);
         $("[data-test-id='name'] [class='input__control']").setValue("Ivanov Ivan");
         $("[data-test-id='phone'] [class='input__control']").setValue("+71231234567");
         $(".checkbox__box").click();
@@ -206,12 +186,9 @@ public class AppCardDeliveryNegativeTest {
     void shouldTestNotValidNameSpecialSymbol() {
         open("http://localhost:9999");
         $("[data-test-id='city'] [class='input__control']").setValue("Казань");
-        LocalDate date = LocalDate.now();
-        int year = date.getYear();
-        int month = date.getMonthValue();
-        int dayOfMonth = date.getDayOfMonth() + 3;
         $("[data-test-id='date'] [class='input__control']").doubleClick().sendKeys(Keys.DELETE);
-        $("[data-test-id='date'] [class='input__control']").setValue(dayOfMonth + "." + month + "." + year);
+        String days = setDays(3);
+        $("[data-test-id='date'] [class='input__control']").setValue(days);
         $("[data-test-id='name'] [class='input__control']").setValue("Иванов&Иван");
         $("[data-test-id='phone'] [class='input__control']").setValue("+71231234567");
         $(".checkbox__box").click();
@@ -224,12 +201,9 @@ public class AppCardDeliveryNegativeTest {
     void shouldTestNotValidNameDash() {
         open("http://localhost:9999");
         $("[data-test-id='city'] [class='input__control']").setValue("Казань");
-        LocalDate date = LocalDate.now();
-        int year = date.getYear();
-        int month = date.getMonthValue();
-        int dayOfMonth = date.getDayOfMonth() + 3;
         $("[data-test-id='date'] [class='input__control']").doubleClick().sendKeys(Keys.DELETE);
-        $("[data-test-id='date'] [class='input__control']").setValue(dayOfMonth + "." + month + "." + year);
+        String days = setDays(3);
+        $("[data-test-id='date'] [class='input__control']").setValue(days);
         $("[data-test-id='name'] [class='input__control']").setValue("-Иванов Иван");
         $("[data-test-id='phone'] [class='input__control']").setValue("+71231234567");
         $(".checkbox__box").click();
@@ -242,12 +216,9 @@ public class AppCardDeliveryNegativeTest {
     void shouldTestAllValidInfoDash() {
         open("http://localhost:9999");
         $("[data-test-id='city'] [class='input__control']").setValue("Казань");
-        LocalDate date = LocalDate.now();
-        int year = date.getYear();
-        int month = date.getMonthValue();
-        int dayOfMonth = date.getDayOfMonth() + 3;
         $("[data-test-id='date'] [class='input__control']").doubleClick().sendKeys(Keys.DELETE);
-        $("[data-test-id='date'] [class='input__control']").setValue(dayOfMonth + "." + month + "." + year);
+        String days = setDays(3);
+        $("[data-test-id='date'] [class='input__control']").setValue(days);
         $("[data-test-id='name'] [class='input__control']").setValue("Иванов--Иван");
         $("[data-test-id='phone'] [class='input__control']").setValue("+71231234567");
         $(".checkbox__box").click();
@@ -261,12 +232,9 @@ public class AppCardDeliveryNegativeTest {
     void shouldTestShortName() {
         open("http://localhost:9999");
         $("[data-test-id='city'] [class='input__control']").setValue("Казань");
-        LocalDate date = LocalDate.now();
-        int year = date.getYear();
-        int month = date.getMonthValue();
-        int dayOfMonth = date.getDayOfMonth() + 3;
         $("[data-test-id='date'] [class='input__control']").doubleClick().sendKeys(Keys.DELETE);
-        $("[data-test-id='date'] [class='input__control']").setValue(dayOfMonth + "." + month + "." + year);
+        String days = setDays(3);
+        $("[data-test-id='date'] [class='input__control']").setValue(days);
         $("[data-test-id='name'] [class='input__control']").setValue("И");
         $("[data-test-id='phone'] [class='input__control']").setValue("+71231234567");
         $(".checkbox__box").click();
@@ -279,12 +247,9 @@ public class AppCardDeliveryNegativeTest {
     void shouldTestLongName() {
         open("http://localhost:9999");
         $("[data-test-id='city'] [class='input__control']").setValue("Казань");
-        LocalDate date = LocalDate.now();
-        int year = date.getYear();
-        int month = date.getMonthValue();
-        int dayOfMonth = date.getDayOfMonth() + 3;
         $("[data-test-id='date'] [class='input__control']").doubleClick().sendKeys(Keys.DELETE);
-        $("[data-test-id='date'] [class='input__control']").setValue(dayOfMonth + "." + month + "." + year);
+        String days = setDays(3);
+        $("[data-test-id='date'] [class='input__control']").setValue(days);
         $("[data-test-id='name'] [class='input__control']")
                 .setValue("Вдлваожфлвоадфовлаофжлвоалфвалфлвафлвалфолвоафловал " +
                         "флваофлываожлфовалофлываожлфоывлаофвоашщцутимтущфщмцшц" +
@@ -309,12 +274,9 @@ public class AppCardDeliveryNegativeTest {
     void shouldTestNotValidPhone() {
         open("http://localhost:9999");
         $("[data-test-id='city'] [class='input__control']").setValue("Казань");
-        LocalDate date = LocalDate.now();
-        int year = date.getYear();
-        int month = date.getMonthValue();
-        int dayOfMonth = date.getDayOfMonth() + 3;
         $("[data-test-id='date'] [class='input__control']").doubleClick().sendKeys(Keys.DELETE);
-        $("[data-test-id='date'] [class='input__control']").setValue(dayOfMonth + "." + month + "." + year);
+        String days = setDays(3);
+        $("[data-test-id='date'] [class='input__control']").setValue(days);
         $("[data-test-id='name'] [class='input__control']").setValue("Иванов Иван");
         $("[data-test-id='phone'] [class='input__control']").setValue("+7123123456");
         $(".checkbox__box").click();
@@ -327,12 +289,9 @@ public class AppCardDeliveryNegativeTest {
     void shouldTestNotValidPhonePlus() {
         open("http://localhost:9999");
         $("[data-test-id='city'] [class='input__control']").setValue("Казань");
-        LocalDate date = LocalDate.now();
-        int year = date.getYear();
-        int month = date.getMonthValue();
-        int dayOfMonth = date.getDayOfMonth() + 3;
         $("[data-test-id='date'] [class='input__control']").doubleClick().sendKeys(Keys.DELETE);
-        $("[data-test-id='date'] [class='input__control']").setValue(dayOfMonth + "." + month + "." + year);
+        String days = setDays(3);
+        $("[data-test-id='date'] [class='input__control']").setValue(days);
         $("[data-test-id='name'] [class='input__control']").setValue("Иванов Иван");
         $("[data-test-id='phone'] [class='input__control']").setValue("71231234567+");
         $(".checkbox__box").click();
